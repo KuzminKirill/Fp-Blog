@@ -288,6 +288,7 @@ Tests cover post creation, updates, and authorization.
 - **Localization**: Handled via `SetLocale` middleware.
 
 ## What can be updated to make project better
+- ***Hide all envs!!!*** (they are open just to make preparation easy)
 - Add nginx or roadrunner to project like it done here https://github.com/KuzminKirill/Site-visit-counter-project
 - Use docker for dev env to make installation easier
 - Add error handling for more readable errors
