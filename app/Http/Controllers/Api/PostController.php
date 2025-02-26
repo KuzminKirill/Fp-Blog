@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use JetBrains\PhpStorm\NoReturn;
 
 class PostController extends Controller
 {
