@@ -184,7 +184,7 @@
 						},
 						{
 							"key": "tags",
-							"value": "Ashot,Brat",
+							"value": "First,Second",
 							"disabled": true
 						}
 					]
@@ -255,7 +255,7 @@
 						},
 						{
 							"key": "tags",
-							"value": "Ashot,Brat",
+							"value": "First,Second",
 							"disabled": true
 						}
 					]
@@ -326,7 +326,7 @@
 						},
 						{
 							"key": "tags",
-							"value": "Ashot,Brat",
+							"value": "First,Second",
 							"disabled": true
 						}
 					]
