@@ -39,20 +39,28 @@ class PostController extends Controller
             'tags.*' => 'string|max:255',
         ]);
 
-        $post = $request->user()->posts()->create($request->only('title', 'content'));
-        if ($request->tags) {
-            $tagIds = [];
-            foreach ($request->tags as $tagName) {
-                $tag = Tag::firstOrCreate(['name' => $tagName]);
-                $tagIds[] = $tag->id;
-            }
-            $post->tags()->attach($tagIds);
-        }
+        try {
+            $post = $request->user()->posts()->create($request->only('title', 'content'));
 
-        return response()->json([
-            'message' => __('messages.post_created'),
-            'post' => $post->load('tags')
-        ], 201);
+            if ($request->tags) {
+                $tagIds = [];
+                foreach ($request->tags as $tagName) {
+                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                    $tagIds[] = $tag->id;
+                }
+                $post->tags()->attach($tagIds);
+            }
+
+            return response()->json([
+                'message' => __('messages.post_created'),
+                'post' => $post->load('tags')
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create post',
+                'error' => 'An unexpected error occurred'
+            ], 500);
+        }
     }
 
     public function update(Request $request, Post $post): JsonResponse
@@ -66,20 +74,28 @@ class PostController extends Controller
             'tags.*' => 'string|max:255',
         ]);
 
-        $post->update($request->only('title', 'content'));
-        if ($request->has('tags')) {
-            $tagIds = [];
-            foreach ($request->tags as $tagName) {
-                $tag = Tag::firstOrCreate(['name' => $tagName]);
-                $tagIds[] = $tag->id;
-            }
-            $post->tags()->sync($tagIds);
-        }
+        try {
+            $post->update($request->only('title', 'content'));
 
-        return response()->json([
-            'message' => __('messages.post_updated'),
-            'post' => $post->load('tags')
-        ]);
+            if ($request->tags) {
+                $tagIds = [];
+                foreach ($request->tags as $tagName) {
+                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                    $tagIds[] = $tag->id;
+                }
+                $post->tags()->sync($tagIds);
+            }
+
+            return response()->json([
+                'message' => __('messages.post_updated'),
+                'post' => $post->load('tags')
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to update post',
+                'error' => 'An unexpected error occurred'
+            ], 500);
+        }
     }
 
     public function destroy(Post $post): JsonResponse
