@@ -55,6 +55,21 @@ Edit `.env` with your database details:
 
 #### For MySQL:
 
+- Set Up MySQL Database
+
+- Log in to MySQL
+
+```bash
+mysql -u root -p
+```
+
+- Create a Database
+
+```sql
+CREATE DATABASE blog_app;
+EXIT;
+```
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
