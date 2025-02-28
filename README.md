@@ -51,8 +51,6 @@ cp .env.example .env
 
 ### 3.2 Configure the .env File
 
-Edit `.env` with your database details:
-
 #### For MySQL:
 
 - Set Up MySQL Database
@@ -69,6 +67,8 @@ mysql -u root -p
 CREATE DATABASE blog_app;
 EXIT;
 ```
+
+- Edit `.env` with your database details:
 
 ```env
 DB_CONNECTION=mysql
